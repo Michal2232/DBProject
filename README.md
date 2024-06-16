@@ -236,3 +236,30 @@ CREATE TABLE Children
 ![Restore](https://github.com/Michal2232/DBProject/assets/116974985/a0015031-4fc8-486e-96fb-40faf30fc278)
 
 
+
+
+
+
+
+
+#דוח עבור שלב ב
+שאילתות SELECT ללא פרמטרים :
+1)
+מספר ארוחות שהוזמנו בחודש מסוים עבור כל קבוצה
+SELECT 
+    G.Group_name AS Group_Name,
+    EXTRACT(MONTH FROM I.Invitation_date) AS Month,
+    SUM(I.amount) AS Total_Meals_Ordered
+FROM 
+    Invitation I
+    JOIN Groups G ON I.Group_ID = G.Group_ID
+GROUP BY 
+    G.Group_name, EXTRACT(MONTH FROM I.Invitation_date)
+HAVING 
+    EXTRACT(MONTH FROM I.Invitation_date) = 6
+ORDER BY 
+    Total_Meals_Ordered DESC;
+
+![צילום מסך 2024-06-17 013125](https://github.com/Michal2232/DBProject/assets/116974985/63ea92a1-0cfa-4c5f-8953-02749b1eff9b)
+
+
